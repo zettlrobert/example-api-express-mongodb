@@ -10,6 +10,7 @@ config/config.env
 
 - express
 - dotenv
+- morgan
 
 ## Devdependencies
 
