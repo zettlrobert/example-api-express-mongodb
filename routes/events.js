@@ -1,37 +1,24 @@
 const express = require('express');
+const {
+  getEvents,
+  getEvent,
+  createEvent,
+  updateEvent,
+  deleteEvent
+} = require('../controllers/events')
+
 const router = express.Router();
 
 
-// CRUD Routes for Events
-
-// Get all Events
-router.get('/', (req, res) => {
-  res.status(200).json({ success: true, msg: "Show all Events" })
-});
+// Route to Controller Methods
+router.route('/')
+  .get(getEvents)
+  .post(createEvent)
 
 
-// Get One Event
-router.get('/:id', (req, res) => {
-  res.status(200).json({ success: true, msg: `Get Event ${req.params.id}` })
-});
-
-
-// Add Event
-router.post('/', (req, res) => {
-  res.status(200).json({ success: true, msg: "Show all Events" })
-});
-
-
-// Update Event
-router.put('/:id', (req, res) => {
-  res.status(200).json({ success: true, msg: `Update Event ${req.params.id}` })
-});
-
-
-// Delete Event
-router.put('/:id', (req, res) => {
-  res.status(200).json({ success: true, msg: `Delete Event ${req.params.id}` })
-});
-
+router.route('/:id')
+  .get(getEvent)
+  .put(updateEvent)
+  .delete(deleteEvent)
 
 module.exports = router;
