@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const connectDB = require('./config/db')
 const colors = require('colors');
+const errorHandler = require('./middleware/error');
 
 
 // Load env vars
@@ -32,6 +33,11 @@ if (process.env.NODE_ENV === 'development') {
 
 // Mount Routers
 app.use('/api/v1/events', events);
+// Middleware is executed in linear ORDER 
+app.use(errorHandler);
+
+
+
 
 
 const PORT = process.env.PORT || 5000;

@@ -43,9 +43,13 @@ exports.getEvent = async (req, res, next) => {
     })
   } catch (err) {
 
-    res.status(400).json({
-      sucess: false,
-    })
+    // res.status(400).json({
+    //   sucess: false,
+    // })
+
+
+
+    next(err);
   }
 }
 
