@@ -6,8 +6,18 @@ const Event = require('../models/Event');
 // @desc      Get All Events
 // @route     GET /api/v1/events
 // @access    Public
-exports.getEvents = (req, res, next) => {
-  res.status(200).json({ success: true, msg: "Show all Events" })
+exports.getEvents = async (req, res, next) => {
+  try {
+    const events = await Event.find();
+
+    res.status(200).json({
+      success: true,
+      data: events
+    })
+  } catch (err) {
+
+    res.status(400).json({ success: false })
+  }
 }
 
 
@@ -15,8 +25,27 @@ exports.getEvents = (req, res, next) => {
 // @desc      Get Event
 // @route     GET /api/v1/events/:id
 // @access    Public
-exports.getEvent = (req, res, next) => {
-  res.status(200).json({ success: true, msg: `Get Event ${req.params.id}` })
+exports.getEvent = async (req, res, next) => {
+  try {
+    const event = await Event.findById(req.params.id);
+
+    // Check if ID is not in DB
+    if (!event) {
+      return res.status(400).json({
+        success: false
+      })
+    }
+
+    res.status(200).json({
+      success: true,
+      data: event
+    })
+  } catch (err) {
+
+    res.status(400).json({
+      sucess: false,
+    })
+  }
 }
 
 

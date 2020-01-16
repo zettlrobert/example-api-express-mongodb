@@ -8,5 +8,13 @@
     "address": "To be Disclosed",
     "housing": false
   }
+  [{
+      "name": "Weihnachtsfeier",
+      "description": "Happy new Year thanks for Collaboration",
+      "website": "https://zerodev.de",
+      "email": "test@testerino.com",
+      "address": "To be Disclosed",
+      "housing": false
+    }
 
-]
+  ]
