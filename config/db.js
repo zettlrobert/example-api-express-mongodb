@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const color = require('colors')
 
-// mongodb + srv://zerodev:<password>@zerodev-atlas-cluster-u457t.mongodb.net/test?retryWrites=true&w=majority
 
 const connectDB = async () => {
   // URI, 

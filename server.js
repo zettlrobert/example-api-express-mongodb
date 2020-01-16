@@ -14,15 +14,14 @@ dotenv.config({
 // Connect to Database
 connectDB();
 
+const app = express();
 
+
+// Body parser
+app.use(express.json());
 
 // Route Files
 const events = require('./routes/events')
-
-
-
-
-const app = express();
 
 
 // Dev logging middleware
