@@ -16,6 +16,7 @@ Simple Example API with Generated Docs using Express and MongoDB
 - mongoose
 - dotenv
 - morgan
+- slugify
 
 ## Devdependencies
 
