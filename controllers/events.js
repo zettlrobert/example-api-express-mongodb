@@ -1,3 +1,4 @@
+const ErrorResponse = require('../utils/errorResponse');
 const Event = require('../models/Event');
 
 // Middleware Functions
@@ -16,7 +17,6 @@ exports.getEvents = async (req, res, next) => {
       data: events
     })
   } catch (err) {
-
     res.status(400).json({ success: false })
   }
 }
@@ -32,9 +32,9 @@ exports.getEvent = async (req, res, next) => {
 
     // Check if ID is not in DB
     if (!event) {
-      return res.status(400).json({
-        success: false
-      })
+      return next(
+        new ErrorResponse(`Event not found ẃith id of ${req.params.id}`, 404)
+      )
     }
 
     res.status(200).json({
@@ -45,11 +45,9 @@ exports.getEvent = async (req, res, next) => {
 
     // res.status(400).json({
     //   sucess: false,
-    // })
+    // }
 
-
-
-    next(err);
+    next(new ErrorResponse(`Event not found ẃith id of ${req.params.id}`, 404))
   }
 }
 
