@@ -17,9 +17,11 @@ exports.getEvents = async (req, res, next) => {
       data: events
     })
   } catch (err) {
-    res.status(400).json({ success: false })
+    next(err);
   }
 }
+
+
 
 
 
@@ -33,7 +35,7 @@ exports.getEvent = async (req, res, next) => {
     // Check if ID is not in DB
     if (!event) {
       return next(
-        new ErrorResponse(`Event not found ẃith id of ${req.params.id}`, 404)
+        new ErrorResponse(`Event not found with id of ${req.params.id}`, 404)
       )
     }
 
@@ -47,7 +49,7 @@ exports.getEvent = async (req, res, next) => {
     //   sucess: false,
     // }
 
-    next(new ErrorResponse(`Event not found ẃith id of ${req.params.id}`, 404))
+    next(err)
   }
 }
 
@@ -69,7 +71,7 @@ exports.createEvent = async (req, res, next) => {
   } catch (err) {
 
     // Respond to Error
-    res.status(400).json({ success: false })
+    next(err)
   }
 }
 
@@ -87,9 +89,9 @@ exports.updateEvent = async (req, res, next) => {
 
     // Error Handling if not Existing
     if (!event) {
-      return res.status(400).json({
-        success: false
-      })
+      return next(
+        new ErrorResponse(`Event not found with id of ${req.params.id}`, 404)
+      )
     }
 
     res.status(200).json({
@@ -99,9 +101,7 @@ exports.updateEvent = async (req, res, next) => {
 
   } catch (err) {
 
-    res.status(400).json({
-      success: false
-    })
+    next(err)
   }
 
 }
@@ -116,11 +116,9 @@ exports.deleteEvent = async (req, res, next) => {
     const event = await Event.findByIdAndDelete(req.params.id)
 
     // Error Handling if not Existing
-    if (!event) {
-      return res.status(400).json({
-        success: false
-      })
-    }
+    return next(
+      new ErrorResponse(`Event not found with id of ${req.params.id}`, 404)
+    )
 
     res.status(200).json({
       success: true,
@@ -128,8 +126,6 @@ exports.deleteEvent = async (req, res, next) => {
     })
 
   } catch (error) {
-    res.status(400).json({
-      success: false
-    })
+    next(err)
   }
 }
