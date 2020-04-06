@@ -1,5 +1,7 @@
 # example-api-express-mongodb
 
+![cover](docs/cover.png)
+
 Simple Example API with Generated Docs using Express and MongoDB
 
 ## Configuration has to be created:
