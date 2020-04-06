@@ -2,7 +2,7 @@
 
 ![cover](docs/cover.png)
 
-Simple Example API with Generated Docs using Express and MongoDB
+simple example API it will generated docs using express and mongodb
 
 ## Configuration has to be created:
 
